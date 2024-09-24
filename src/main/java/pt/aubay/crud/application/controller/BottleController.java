@@ -14,7 +14,7 @@ public class BottleController {
   @Autowired
   private BottleService service;
 
-  @GetMapping("")
+  @GetMapping
   public ResponseEntity<Page<BottleDTO>> getBottles(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "20") int size){
     Pageable pageable = Pageable.ofSize(size);
     pageable.withPage(page);

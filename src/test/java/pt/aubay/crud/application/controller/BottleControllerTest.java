@@ -55,7 +55,8 @@ class BottleControllerTest {
   void testGetById() throws Exception {
     Cap blue = Cap.builder().color("blue").build();
     capRepository.save(blue);
-    Bottle plastic = Bottle.builder().height(10.0).volume(1.0).cap(blue).material("plastic").build();
+    //Bottle plastic = Bottle.builder().height(10.0).volume(1.0).cap(blue).material("plastic").build();
+    Bottle plastic = Bottle.builder().height(10.0).volume(1.0).material("plastic").build();
     bottleMapper.toDTO(repository.save(plastic));
     this.mockMvc
         .perform(get("/" + plastic.getId()))
@@ -63,6 +64,21 @@ class BottleControllerTest {
         .andExpect(status().isOk())
         .andExpect(jsonPath("$.material").value("plastic"))
         .andExpect(jsonPath("$.cap.color").value("blue"));
+  }
+
+  @Test
+  void testGetByCapColor() throws Exception {
+    Cap blue = Cap.builder().color("blue").build();
+    capRepository.save(blue);
+    //Bottle plastic = Bottle.builder().height(10.0).volume(1.0).cap(blue).material("plastic").build();
+    Bottle plastic = Bottle.builder().height(10.0).volume(1.0).material("plastic").build();
+    bottleMapper.toDTO(repository.save(plastic));
+    this.mockMvc
+        .perform(get("/cap" + plastic.getCap().getColor()))
+        .andDo(print())
+        .andExpect(status().isOk())
+        .andExpect(jsonPath("$0.material").value("plastic"))
+        .andExpect(jsonPath("$0.cap.color").value("blue"));
   }
 
   @Test
