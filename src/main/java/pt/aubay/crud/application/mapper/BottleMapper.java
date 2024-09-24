@@ -7,7 +7,9 @@ import org.mapstruct.NullValuePropertyMappingStrategy;
 import pt.aubay.crud.application.model.BottleDTO;
 import pt.aubay.crud.domain.model.Bottle;
 
-@Mapper(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE, componentModel = "spring", builder = @Builder(disableBuilder = true))
+@Mapper(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE,
+    componentModel = "spring", builder = @Builder(disableBuilder = true),
+    uses = CapMapper.class)
 public interface BottleMapper {
 
   Bottle toModel(BottleDTO dto);

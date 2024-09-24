@@ -9,15 +9,6 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class BottleDTO {
-
-  private String id;
-
-  private Double height;
-
-  private Double volume;
-
-  private String material;
-
-  private CapDTO cap;
+public class CapDTO {
+  private String color;
 }

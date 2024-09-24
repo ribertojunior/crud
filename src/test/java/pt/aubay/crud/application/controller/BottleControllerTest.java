@@ -13,7 +13,9 @@ import org.springframework.test.web.servlet.MockMvc;
 import pt.aubay.crud.application.mapper.BottleMapper;
 import pt.aubay.crud.application.model.BottleDTO;
 import pt.aubay.crud.domain.model.Bottle;
+import pt.aubay.crud.domain.model.Cap;
 import pt.aubay.crud.domain.repository.BottleRepository;
+import pt.aubay.crud.domain.repository.CapRepository;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -36,6 +38,9 @@ class BottleControllerTest {
   private BottleRepository repository;
 
   @Autowired
+  private CapRepository capRepository;
+
+  @Autowired
   private BottleMapper bottleMapper;
 
   @Test
@@ -48,12 +53,16 @@ class BottleControllerTest {
 
   @Test
   void testGetById() throws Exception {
-    Bottle plastic = Bottle.builder().height(10.0).volume(1.0).material("plastic").build();
+    Cap blue = Cap.builder().color("blue").build();
+    capRepository.save(blue);
+    Bottle plastic = Bottle.builder().height(10.0).volume(1.0).cap(blue).material("plastic").build();
     bottleMapper.toDTO(repository.save(plastic));
     this.mockMvc
         .perform(get("/" + plastic.getId()))
         .andDo(print())
-        .andExpect(status().isOk());
+        .andExpect(status().isOk())
+        .andExpect(jsonPath("$.material").value("plastic"))
+        .andExpect(jsonPath("$.cap.color").value("blue"));
   }
 
   @Test
