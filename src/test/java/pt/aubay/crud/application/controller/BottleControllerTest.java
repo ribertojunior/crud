@@ -77,8 +77,8 @@ class BottleControllerTest {
         .perform(get("/cap?color=" + blue.getColor()))
         .andDo(print())
         .andExpect(status().isOk())
-        .andExpect(jsonPath("$0.material").value("plastic"))
-        .andExpect(jsonPath("$0.cap.color").value("blue"));
+        .andExpect(jsonPath("$.content[0].material").value("plastic"))
+        .andExpect(jsonPath("$.content[0].cap.color").value("blue"));
   }
 
   @Test
