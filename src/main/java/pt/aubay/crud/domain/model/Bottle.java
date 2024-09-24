@@ -31,6 +31,4 @@ public class Bottle {
 
   private String material;
 
-  @ManyToOne
-  private Cap cap;
 }
