@@ -32,11 +32,17 @@ public class BottleService {
   public BottleDTO updateBottle(BottleDTO bottleDTO) throws RuntimeException {
     Optional<Bottle> optionalBottle = bottleRepository.findById(bottleDTO.getId());
     Bottle bottle = optionalBottle.orElseThrow(() -> new RuntimeException("Not Found: " + bottleDTO.getId()));
-    bottleMapper.updateBootleFromDto(bottleDTO, bottle);
+    bottleMapper.updateBottleFromDto(bottleDTO, bottle);
     return bottleMapper.toDTO(bottleRepository.save(bottle));
   }
 
   public void delete(String id){
     bottleRepository.deleteById(id);
+  }
+
+  public BottleDTO get(String id) {
+    return bottleMapper.toDTO(
+        bottleRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("Not Found: " + id)));
   }
 }
