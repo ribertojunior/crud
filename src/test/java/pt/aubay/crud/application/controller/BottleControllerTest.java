@@ -74,7 +74,7 @@ class BottleControllerTest {
     Bottle plastic = Bottle.builder().height(10.0).volume(1.0).material("plastic").build();
     bottleMapper.toDTO(repository.save(plastic));
     this.mockMvc
-        .perform(get("/cap" + plastic.getCap().getColor()))
+        .perform(get("/cap?color=" + blue.getColor()))
         .andDo(print())
         .andExpect(status().isOk())
         .andExpect(jsonPath("$0.material").value("plastic"))
