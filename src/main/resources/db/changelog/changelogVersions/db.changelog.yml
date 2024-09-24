@@ -1,0 +1,29 @@
+databaseChangeLog:
+- changeSet:
+    id: 1727185137744-1
+    author: riber (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+            name: height
+            type: FLOAT8
+        - column:
+            constraints:
+              nullable: false
+            name: volume
+            type: FLOAT8
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: bootle_pkey
+            name: id
+            type: VARCHAR(255)
+        - column:
+            name: material
+            type: VARCHAR(255)
+        tableName: bottle
+
