@@ -1,6 +1,6 @@
 # Technical Interview
-1 - Run the tests, analyze the results and fix app so the tests are successfull;
+1 - Run the tests, analyze the results and fix app so the tests can run successfully;
 
-2 - Do not change the tests, exceptions are lines 58, 59, 73 and 74;
+2 - Do not change the tests;
 
 3 - Is there anything you'd improve in this project?
