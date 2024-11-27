@@ -56,7 +56,6 @@ class BottleControllerTest {
     Cap blue = Cap.builder().color("blue").build();
     capRepository.save(blue);
     Bottle plastic = Bottle.builder().height(10.0).volume(1.0).cap(blue).material("plastic").build();
-    bottleMapper.toDTO(repository.save(plastic));
     this.mockMvc
         .perform(get("/" + plastic.getId()))
         .andDo(print())
@@ -70,7 +69,6 @@ class BottleControllerTest {
     Cap blue = Cap.builder().color("blue").build();
     capRepository.save(blue);
     Bottle plastic = Bottle.builder().height(10.0).volume(1.0).cap(blue).material("plastic").build();
-    bottleMapper.toDTO(repository.save(plastic));
     this.mockMvc
         .perform(get("/cap?color=" + blue.getColor()))
         .andDo(print())
